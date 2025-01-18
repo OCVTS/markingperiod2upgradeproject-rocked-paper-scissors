@@ -62,3 +62,5 @@ function determineWinner(userChoice, computerChoice) {
   document.getElementById('computerScore').innerHTML = ('Computer Score: ' + computerScore); // Updates score on HTML
   document.getElementById('playerScore').innerHTML = ('Player Score: ' + playerScore);
 } // Takes the strings from getUserChoice and puts them into the if statements to determine the winner
+
+// test
