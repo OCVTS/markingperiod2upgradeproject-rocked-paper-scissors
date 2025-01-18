@@ -3,12 +3,30 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title></title>
+        <title>Rocked Paper Scissors</title>
         <link href="style.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <header></header>
-        <main></main>
+        <main>
+            <div id="gridTop"></div>
+            <div id="gridLeft"></div>
+            <div id="content">
+                <button id="rock" onclick="getUserChoice('Rock')">💎</button>
+                <button id="paper" onclick="getUserChoice('Paper')">📃</button>
+                <button id="scissors" onclick="getUserChoice('Scissors')">✂</button>
+                <button id="bomb" onclick="getUserChoice('Bomb')">💣</button>
+                <div id="text">
+                    <p id="userChoice">Player Selected...</p>
+                    <p id="computerChoice">Computer Selected...</p>
+                    <p id="playerScore">Player Score: 0</p>
+                    <p id="computerScore">Computer Score: 0</p>
+                    <p id="winner">Click a button to play!</p>
+                </div>
+            </div>
+            <div id="gridRight"></div>
+            <div id="gridBottom"></div>
+        </main>
         <footer></footer>
         <script src="script.js"></script>
     </body>
