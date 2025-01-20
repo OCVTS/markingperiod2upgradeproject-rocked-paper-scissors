@@ -13,30 +13,38 @@
             <div id="gridLeft"></div>
             <div id="content">
                 <div id="buttons">
-                    <button id="rock" onclick="getUserChoice('rock')">💎</button>
-                    <button id="paper" onclick="getUserChoice('paper')">📃</button>
-                    <button id="scissors" onclick="getUserChoice('scissors')">✂</button>
-                    <button id="bomb" onclick="getUserChoice('bomb')">💣</button>
-
-                    <button id="water" onclick="getUserChoice('water')">💧</button>
-                    <button id="paper towel" onclick="getUserChoice('paper towel')">🧻</button>
-                    <button id="man" onclick="getUserChoice('man')">🚶‍♂️</button>
-                    <button id="random number" onclick="getUserChoice('random number')">🔢</button>
-
-                    <button id="wind" onclick="getUserChoice('wind')">💨</button>
-                    <button id="shoot" onclick="getUserChoice('shoot')">👉</button>
-                    <button id="gun" onclick="getUserChoice('gun')">🔫</button>
+                    <button id="rock" class="optionButton" onclick="getUserChoice('rock')">💎</button>
+                    <button id="paper" class="optionButton" onclick="getUserChoice('paper')">📃</button>
+                    <button id="scissors" class="optionButton" onclick="getUserChoice('scissors')">✂</button>
+                    <button id="bomb" class="optionButton" onclick="getUserChoice('bomb')">💣</button>
+                    <button id="water" class="optionButton" onclick="getUserChoice('water')">💧</button>
+                    <button id="paper towel" class="optionButton" onclick="getUserChoice('paper towel')">🧻</button>
+                    <button id="man" class="optionButton" onclick="getUserChoice('man')">🚶‍♂️</button>
+                    <button id="random number" class="optionButton" onclick="getUserChoice('random number')">🔢</button>
+                    <button id="wind" class="optionButton" onclick="getUserChoice('wind')">💨</button>
+                    <button id="shoot" class="optionButton" onclick="getUserChoice('shoot')">👉</button>
+                    <button id="gun" class="optionButton" onclick="getUserChoice('gun')">🔫</button>
                 </div>
                 <div id="text">
                     <p id="userChoice">Player Selected...</p>
                     <p id="computerChoice">Computer Selected...</p>
                     <p id="playerScore">Player Score: 0</p>
                     <p id="computerScore">Computer Score: 0</p>
-                    <p id="winner">Click a button to play!</p>
+                    <p id="winner">Click the GO button to play!</p>
+                    <button id="go" onclick="determineWinner(userChoice);">GO</button>
                 </div>
             </div>
             <div id="gridRight"></div>
             <div id="gridBottom"></div>
+            <div id="tooltip">
+                <div id="tooltipGrid">
+                    <p id="buttonId"></p>
+                    <p id="buttonValue"></p>
+                    <p id="buttonInfo"></p>
+                    <p id="buttonBeats"></p>
+                    <p id="buttonTiesWith"></p>
+                </div>
+            </div>
         </main>
         <footer></footer>
         <script src="script.js"></script>
