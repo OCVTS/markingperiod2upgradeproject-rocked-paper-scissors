@@ -1,11 +1,11 @@
 // Variables for storing data
-let userChoice = '';
-let computerChoice = '';
+let userChoice = 'none';
+let computerChoice = 'none';
 
 let playerScore = 0;
 let computerScore = 0;
 
-let currentModifier = '';
+let currentModifier = 'none';
 let userChoice2 = '';
 
 // Object containing all selectable options
@@ -45,6 +45,7 @@ function getUserChoice(userInput) {
 // Takes all of the options from an options object and makes an array with them. It then selects a random index of that array, returning a random option (this works no matter how many options are added). Has a 10% chance to use an alternate options object
 function getComputerChoice() {
     num = Math.floor(Math.random() * 100) + 1;
+
     if (num >= 1 && num <= 5) {
         choices = Object.keys(mergedOptions); // Uses mergedOptions (5%)
         const randomIndex = Math.floor(Math.random() * choices.length);
@@ -63,6 +64,14 @@ function getComputerChoice() {
 function setModifier(mod) {
     currentModifier = mod;
     document.getElementById('modifier').innerHTML = ('Modifier: ' + formatText(currentModifier));
+
+    // Sets userChoice to none if none mod is selected
+    if (currentModifier === 'none') {
+        userChoice = 'none'; 
+        document.getElementById('userChoice').innerHTML = ('Player: ' + formatText(userChoice));
+    } 
+
+    // 
     if (currentModifier == 'upgrade') {
         userChoice = options[userChoice].upgrade;
         document.getElementById('userChoice').innerHTML = ('Player: ' + formatText(userChoice));
@@ -73,18 +82,23 @@ function setModifier(mod) {
     }
 }
 
+// Go button runs this, checks modifier and runs correct determineWinner
 function modifierCheck(userChoice) {
-    if (userChoice == 'random number') { // Forces Value Mod
-        currentModifier = 'value';
-        document.getElementById('modifier').innerHTML = ('Modifier: ' + formatText(currentModifier));
-    }
-    
-    if (currentModifier == 'none') {
-        determineWinner(userChoice);
-    } else if (currentModifier == 'value') {
-        determineValueWinner(userChoice);
-    } else if (currentModifier == 'upgrade') {
-        determineUpgradeWinner(userChoice);
+    if (userChoice == 'none') {
+        document.getElementById('winner').innerHTML = ('Select an option.'); // 
+    } else {
+        if (userChoice == 'random number') { // Forces Value Mod
+            currentModifier = 'value';
+            document.getElementById('modifier').innerHTML = ('Modifier: ' + formatText(currentModifier));
+        }
+        
+        if (currentModifier == 'none') {
+            determineWinner(userChoice);
+        } else if (currentModifier == 'value') {
+            determineValueWinner(userChoice);
+        } else if (currentModifier == 'upgrade') {
+            determineUpgradeWinner(userChoice);
+        }
     }
 }
 

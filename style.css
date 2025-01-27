@@ -64,6 +64,7 @@ p {
 
 #go {
    width: 200px; 
+   align-self: center;
 }
 
 /* Start of tooltip stuff */
