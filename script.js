@@ -8,36 +8,37 @@ let computerScore = 0;
 let currentModifier = '';
 let userChoice2 = '';
 
-// let randomizedNumber = 0;
-
 // Object containing all selectable options
 const options = {
-    'rock': { beats: ['scissors', 'man'], tiesWith: ['rock'], value: 2, info: 'Despite the image, this is just a plain old rock.' },
-    'paper': { beats: ['rock', 'man'], tiesWith: ['paper', 'paper towel'], value: 1, info: 'A basic piece of paper.' },
-    'scissors': { beats: ['paper', 'paper towel', 'man'], tiesWith: ['scissors','water'], value: 5, info: 'A generic pair of scissors.' },
-    'bomb': { beats: ['rock', 'paper', 'scissors', 'paper towel', 'man'], tiesWith: ['bomb'], value: 20, info: 'An explosive. It blows up.' },
-    'water': { beats: ['rock', 'paper', 'bomb', 'man'], tiesWith: ['water','scissors'], value: 1, info: '71% of the Earth\'s surface and about 60% of YOU.' },
-    'paper towel': { beats: ['rock', 'water'], tiesWith: ['paper towel', 'paper'], value: 1, info: 'Good for cleaning spills and not much else.' },
-    'man': { beats: ['paper towel', 'random number'], tiesWith: ['man'], value: 100, info: 'This is Ben. Say hi! (he has a very weak constitution)' },
-    'random number': { beats: ['Technically nothing'], tiesWith: ['Probably itself'], value: 0, info: 'LET\'S GO GAMBLING!!! (Note: This option forces the Value Mod)' },
-    'wind': { beats: [], tiesWith: [], value: 0, info: 'A gust of wind.' },
-    'shoot': { beats: ['man'], tiesWith: ['shoot'], value: 0, info: 'You ever play normal Rock Paper Scissors and have someone treat "SHOOT" as something you can actually pick? No? Well now you can!' },
-    'gun': { beats: [], tiesWith: [], value: 30, info: 'This is a firearm.' }
-} // 'template': { beats: [], tiesWith: [], value: 0, info: '' }
+    'rock': { beats: ['scissors', 'man'], tiesWith: ['rock'], value: 2, info: 'Despite the image, this is just a plain old rock.', upgrade: 'boulder' },
+    'paper': { beats: ['rock', 'man'], tiesWith: ['paper', 'paper towel'], value: 1, info: 'A basic piece of paper.', upgrade: 'carbon fiber reinforced polymer' },
+    'scissors': { beats: ['paper', 'paper towel', 'man'], tiesWith: ['scissors','water'], value: 5, info: 'A generic pair of scissors.', upgrade: 'hedge trimmers' },
+    'bomb': { beats: ['rock', 'paper', 'scissors', 'paper towel', 'man'], tiesWith: ['bomb'], value: 20, info: 'An explosive. It blows up.', upgrade: 'nuke' },
+    'water': { beats: ['rock', 'paper', 'bomb', 'man'], tiesWith: ['water','scissors'], value: 1, info: '71% of the Earth\'s surface and about 60% of YOU.', upgrade: 'ocean' },
+    'paper towel': { beats: ['rock', 'water'], tiesWith: ['paper towel', 'paper'], value: 1, info: 'Good for cleaning spills and not much else.', upgrade: '' },
+    'man': { beats: ['paper towel', 'random number'], tiesWith: ['man'], value: 100, info: 'This is Ben. Say hi! (he has a very weak constitution)', upgrade: '' },
+    'random number': { beats: ['Technically nothing'], tiesWith: ['Probably itself'], value: 0, info: 'LET\'S GO GAMBLING!!! (Note: This option forces the Value Mod)', upgrade: 'Nice Try' },
+    'wind': { beats: [], tiesWith: [], value: 0, info: 'A gust of wind.', upgrade: '' },
+    'shoot': { beats: ['man'], tiesWith: ['shoot'], value: 0, info: 'You ever play normal Rock Paper Scissors and have someone treat "SHOOT" as something you can actually pick? No? Well now you can!', upgrade: '' },
+    'gun': { beats: [], tiesWith: [], value: 30, info: 'This is a firearm.', upgrade: '' }
+} // 'template': { beats: [], tiesWith: [], value: 0, info: '', upgrade: '' }
 
 // Object containing all merge-only options
 const mergedOptions = {
-    'corpse': { beats: [], tiesWith: [], value: 0, info: 'Ben died :(', combos: ['man' + 'bomb'] }
+    'corpse': { beats: [], tiesWith: [], value: 0, info: 'I\'m sure he\'s fine.', combos: ['man' + 'bomb'] }
 } // 'template': { beats: [], tiesWith: [], value: 0, info: '', combos: [] }
 
 // Object containing all upgrade-only options
 const upgradedOptions = {
-    'boulder': { beats: [], tiesWith: [], value: 0, info: '', origin: 'rock' }
+    'boulder': { beats: [], tiesWith: [], value: 0, info: 'That\'s a big rock....', origin: 'rock' }
 } // 'template': { beats: [], tiesWith: [], value: 0, info: '', origin: '' }
 
 // Essentially unmodified from the original. Gets the input from the pressed button, runs getComputerChoice(), and then puts them into determineWinner()
 function getUserChoice(userInput) {
     userChoice = userInput;
+    if (currentModifier == 'upgrade') {
+        userChoice = options[userChoice].upgrade;
+    }
     document.getElementById('userChoice').innerHTML = ('Player: ' + formatText(userChoice));
 }
 
@@ -62,18 +63,28 @@ function getComputerChoice() {
 function setModifier(mod) {
     currentModifier = mod;
     document.getElementById('modifier').innerHTML = ('Modifier: ' + formatText(currentModifier));
+    if (currentModifier == 'upgrade') {
+        userChoice = options[userChoice].upgrade;
+        document.getElementById('userChoice').innerHTML = ('Player: ' + formatText(userChoice));
+    }
+    
+    if (currentModifier == 'none') {
+        userChoice = upgradedOptions[userChoice].origin;
+    }
 }
 
 function modifierCheck(userChoice) {
-    if (userChoice == 'random number') { // Forces Value
+    if (userChoice == 'random number') { // Forces Value Mod
         currentModifier = 'value';
         document.getElementById('modifier').innerHTML = ('Modifier: ' + formatText(currentModifier));
     }
     
-    if (currentModifier == 'value') {
-        determineValueWinner(userChoice);
-    } else {
+    if (currentModifier == 'none') {
         determineWinner(userChoice);
+    } else if (currentModifier == 'value') {
+        determineValueWinner(userChoice);
+    } else if (currentModifier == 'upgrade') {
+        determineUpgradeWinner(userChoice);
     }
 }
 
@@ -96,7 +107,7 @@ function determineWinner(userChoice) { // This function takes the 2 choice varia
     document.getElementById('playerScore').innerHTML = ('Player Score: ' + playerScore);
 }
 
-// Identical to the original, except for how it detects who wins. It's far simpler, actually, since it's just dealing with numbers
+// Same as above except it uses Value
 function determineValueWinner(userChoice) {
     options['random number'].value = numberRandomizer(); // Randomizes the value of Random Number so that it isn't what it was when it was hovered
 
@@ -112,7 +123,26 @@ function determineValueWinner(userChoice) {
         computerScore++;
         document.getElementById('winner').innerHTML = ('Computer wins!');
     }
-    // Updates score in HTML
+
+    document.getElementById('computerScore').innerHTML = ('Computer Score: ' + computerScore);
+    document.getElementById('playerScore').innerHTML = ('Player Score: ' + playerScore);
+}
+
+// Same as above except it uses the upgradedOptions object
+function determineUpgradeWinner(userChoice) {
+    computerChoice = getComputerChoice(); // Does computer stuff first
+    document.getElementById('computerChoice').innerHTML = ('Computer: ' + formatText(computerChoice));
+
+    if (upgradedOptions[userChoice].tiesWith.includes(computerChoice)) { 
+        document.getElementById('winner').innerHTML = (`It's a tie...`); 
+    } else if (upgradedOptions[userChoice].beats.includes(computerChoice)) { 
+        playerScore++;
+        document.getElementById('winner').innerHTML = ('Player wins!');
+    } else if (upgradedOptions[computerChoice].beats.includes(userChoice)) { 
+        computerScore++;
+        document.getElementById('winner').innerHTML = ('Computer wins!');
+    }
+
     document.getElementById('computerScore').innerHTML = ('Computer Score: ' + computerScore);
     document.getElementById('playerScore').innerHTML = ('Player Score: ' + playerScore);
 }
@@ -129,7 +159,7 @@ function formatText(input) {
 // This is for the tooltip when you hover a button. I searched a lot to try to get it to work how I wanted, and eventually just asked chatGPT and it gave me what I wanted immediately. I also did a ton of messing with it to make it work exactly how I wanted. I've spent hours on this single feature...
 const buttons = document.querySelectorAll('.optionButton');
 const tooltip = document.getElementById('tooltip');
-const buttonNameP = document.getElementById('buttonId');
+const buttonNameP = document.getElementById('buttonName');
 const buttonValueP = document.getElementById('buttonValue');
 const buttonInfoP = document.getElementById('buttonInfo');
 const buttonBeatsP = document.getElementById('buttonBeats');
@@ -181,5 +211,8 @@ function getDate() {
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
+    document.getElementById('dateCorner').innerHTML = (`${month}/${day}/${year}`);
     return `${month}/${day}/${year}`;
 }
+
+getDate();

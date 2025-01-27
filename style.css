@@ -9,13 +9,19 @@ body {
 #content {
     display: grid;
     grid-template-areas: 
-    'modifierButtons optionButtons text';
+    'left middle right';
     grid-template-columns: 1fr 3fr 2fr;
 }
 
 #modifierButtons {
-    grid-area: modiferButtons;
+    grid-area: left;
+    background-color: lightgray;
     display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    margin: 30px;
+    padding: 10px;
+
 }
 
 .modifierButton {
@@ -23,10 +29,13 @@ body {
 }
 
 #optionButtons {
-    grid-area: optionButtons;
+    grid-area: middle;
     background-color: lightgray;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin: 30px;
+    padding: 10px;
+    align-content: top;
 }
 
 button {
@@ -39,11 +48,12 @@ button {
 }
 
 #text {
-    /* grid-area: text; */
+    grid-area: right;
     background-color: lightgray;
     border-radius: 30px;
     border: black solid 1px;
-    margin: 10px;
+    margin: 30px;
+    justify-items: center;
 }
 
 p {
@@ -52,6 +62,11 @@ p {
     font-size: 20px;
 }
 
+#go {
+   width: 200px; 
+}
+
+/* Start of tooltip stuff */
 #tooltip {
     position: absolute;
     pointer-events: none;
@@ -62,7 +77,6 @@ p {
     max-width: 400px;
 }
 
-/* Start of tooltip stuff */
 #tooltipGrid {
     display: grid;
     grid-template-areas:
@@ -76,7 +90,7 @@ p {
     
 } */
 
-#buttonId {
+#buttonName {
     grid-area: left;
     margin: 5px;
     margin-bottom: 0px;
@@ -123,3 +137,9 @@ p {
     padding: 5px;
 }
 /* End of tooltip stuff */
+
+#dateCorner {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
