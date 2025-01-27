@@ -9,10 +9,14 @@
     <body>
         <header></header>
         <main>
-            <div id="gridTop"></div>
-            <div id="gridLeft"></div>
             <div id="content">
-                <div id="buttons">
+                <div id="modifierButtons">
+                    <button id="noneMod" class="modifierButton" onclick="setModifier('none')">None</button>
+                    <button id="valueMod" class="modifierButton" onclick="setModifier('value')">Value</button>
+                    <button id="mergeMod" class="modifierButton" onclick="setModifier('merge')">Merge</button>
+                    <button id="upgradeMod" class="modifierButton" onclick="setModifier('upgrade')">Upgrade</button>
+                </div>
+                <div id="optionButtons">
                     <button id="rock" class="optionButton" onclick="getUserChoice('rock')">💎</button>
                     <button id="paper" class="optionButton" onclick="getUserChoice('paper')">📃</button>
                     <button id="scissors" class="optionButton" onclick="getUserChoice('scissors')">✂</button>
@@ -26,16 +30,15 @@
                     <button id="gun" class="optionButton" onclick="getUserChoice('gun')">🔫</button>
                 </div>
                 <div id="text">
-                    <p id="userChoice">Player Selected...</p>
-                    <p id="computerChoice">Computer Selected...</p>
+                    <p id="userChoice">Player: None</p>
+                    <p id="computerChoice">Computer: None</p>
+                    <p id="modifier">Modifier: None</p>
                     <p id="playerScore">Player Score: 0</p>
                     <p id="computerScore">Computer Score: 0</p>
                     <p id="winner">Click the GO button to play!</p>
-                    <button id="go" onclick="determineWinner(userChoice);">GO</button>
+                    <button id="go" onclick="modifierCheck(userChoice);">GO</button>
                 </div>
             </div>
-            <div id="gridRight"></div>
-            <div id="gridBottom"></div>
             <div id="tooltip">
                 <div id="tooltipGrid">
                     <p id="buttonId"></p>

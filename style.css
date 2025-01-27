@@ -2,40 +2,34 @@ body {
     margin: 0;
     padding: 0;
     background-color: gray;
-    display: grid;
-    grid-template-areas: 
-    'top top top'
-    'left content right'
-    'left bottom right';
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 2fr 1fr;
-}
-
-#gridLeft {
-    grid-area: left;
-    /* background-color: blue; */
-}
-
-#gridRight {
-    grid-area: right;
-    /* background-color: red; */
-}
-
-#gridTop {
-    grid-area: top;
-    /* background-color: yellow; */
-}
-
-#gridBottom {
-    grid-area: bottom;
-    /* background-color: green; */
+    display: flex;
+    justify-content: center;
 }
 
 #content {
-    grid-area: content;
+    display: grid;
+    grid-template-areas: 
+    'modifierButtons optionButtons text';
+    grid-template-columns: 1fr 3fr 2fr;
 }
 
-#buttons button {
+#modifierButtons {
+    grid-area: modiferButtons;
+    display: grid;
+}
+
+.modifierButton {
+    font-size: 20px;
+}
+
+#optionButtons {
+    grid-area: optionButtons;
+    background-color: lightgray;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+button {
     background-color: darkgray;
     height: 100px;
     width: 100px;
@@ -44,18 +38,18 @@ body {
     cursor: pointer;
 }
 
-p {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    font-size: 20px;
-}
-
 #text {
-    grid-area: text;
+    /* grid-area: text; */
     background-color: lightgray;
     border-radius: 30px;
     border: black solid 1px;
     margin: 10px;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 20px;
 }
 
 #tooltip {
@@ -68,6 +62,7 @@ p {
     max-width: 400px;
 }
 
+/* Start of tooltip stuff */
 #tooltipGrid {
     display: grid;
     grid-template-areas:
@@ -127,3 +122,4 @@ p {
     margin-top: 0px;
     padding: 5px;
 }
+/* End of tooltip stuff */
