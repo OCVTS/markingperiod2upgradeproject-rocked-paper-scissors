@@ -30,8 +30,8 @@ const mergedOptions = {
 
 // Object containing all upgrade-only options
 const upgradedOptions = {
-    'boulder': { beats: [], tiesWith: [], value: 0, info: 'That\'s a big rock....', origin: 'rock' }
-} // 'template': { beats: [], tiesWith: [], value: 0, info: '', origin: '' }
+    'boulder': { beats: [], tiesWith: [], value: 0, info: 'That\'s a big rock....' }
+} // 'template': { beats: [], tiesWith: [], value: 0, info: '' }
 
 // Essentially unmodified from the original. Gets the input from the pressed button, runs getComputerChoice(), and then puts them into determineWinner()
 function getUserChoice(userInput) {
@@ -75,10 +75,6 @@ function setModifier(mod) {
     if (currentModifier == 'upgrade') {
         userChoice = options[userChoice].upgrade;
         document.getElementById('userChoice').innerHTML = ('Player: ' + formatText(userChoice));
-    }
-    
-    if (currentModifier == 'none') {
-        userChoice = upgradedOptions[userChoice].origin;
     }
 }
 
