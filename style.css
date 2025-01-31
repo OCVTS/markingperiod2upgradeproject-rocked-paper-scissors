@@ -62,7 +62,7 @@ p {
     font-size: 20px;
 }
 
-#go {
+#playButton {
    width: 200px; 
    align-self: center;
 }

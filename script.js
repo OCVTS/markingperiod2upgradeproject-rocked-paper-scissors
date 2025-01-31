@@ -78,7 +78,7 @@ function setModifier(mod) {
     }
 }
 
-// Go button runs this, checks modifier and runs correct determineWinner
+// SHOOT button runs this, checks modifier and runs correct determineWinner
 function modifierCheck(userChoice) {
     if (userChoice == 'none') {
         document.getElementById('winner').innerHTML = ('Select an option.'); // 
