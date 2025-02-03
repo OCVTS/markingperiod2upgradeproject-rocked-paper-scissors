@@ -7,13 +7,63 @@
         <link href="home.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <header></header>
+        <header>
+            <h1 id="title">Rocked Paper Scissors</h1>
+        </header>
         <main>
-            <h1 id="homeTitle">Rocked Paper Scissors</h1>
-            <p id="homeDescription">Rocked Paper Scissors is like normal Rock Paper Scissors, but cranked up to 11. It has way more options and a few modifiers that completely change how the game works.</p>
-            <a id="homePlayButton" href="project.html">Play</a>
-            <p id="homeOverview"></p>
+            <div id="description">
+                <h2>Decsription</h2>
+                <p>
+                    Rocked Paper Scissors is like normal Rock Paper Scissors, but cranked up to 11. It has way more options and a few modifiers that either completely change how the game works, or add even more options.
+                </p> 
+            </div>
+            <div id="play">
+                <a id="playButton" href="project.html">Play</a>
+            </div>
+            <div id="changelog">
+                <h2>Changelog</h2>
+                <ul>
+                    <h3>v1.0</h3>
+                    <h4>The first "real" version</h4>
+                    <li>Added game logic for win detection and scoring</li>
+                    <li>Added Options: Rock, Paper, Scissors, Bomb, Water, Paper Towel, Man, Random Number, Wind, Shoot, Gun</li>
+                    <li>Added Modifiers: None, Value, Upgrade</li>
+                    <li>Added hover tooltips</li>
+                </ul>
+            </div>
+            <div id="comingSoon">
+                <h2>Coming Soon</h2>
+                <ul>
+                    <li>More options</li>
+                    <li>Merge Modifier</li>
+                </ul>
+            </div>
+            <div id="features">
+                <h2>Features</h2>
+                <ul>
+                    <h3>HTML</h3>
+                    <li>A <em>lot</em> of buttons</li>
 
+                    <h3>CSS</h3>
+                    <li>Grids inside a grid</li>
+                    <li>Hover tooltip (visibility and structure)</li>
+
+                    <h3>Javascript</h3>
+                    <li>Objects of objects containing arrays, strings, and numbers</li>
+                    <li>Hover tooltip (cursor position tracking)</li>
+                    <li>If statements for win checking</li>
+                    <li>Variables for storing data</li>
+                </ul>
+            </div>
+            <div id="theProcess">
+                <h2>The Process</h2>
+                <p>
+                    I had the flu and was out the week where we focused on this project, so I had to do it mostly at home! I also completely underestimated the scope of the project, causing me to spend a lot less time on it than I should've. A bunch of things had to be scrapped (at least for now) to make the due date. In addition, not all options and modifiers are fully implemented. 
+                </p>
+                <p>
+                    It was originally a basic Rock Paper Scissors script that ran entirely within the console. After a lot of brainstorming, staying up really late, needless procrastination, and hours of tweaking the tooltip structure to look <em>juuust</em> right, it reached the state of v1.0. Which is very unfinished, but meets the requirements of submission.
+                </p>
+            </div>
         </main>
         <footer></footer>
         <script src="script.js"></script>
